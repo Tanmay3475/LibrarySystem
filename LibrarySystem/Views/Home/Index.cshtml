@@ -1,0 +1,198 @@
+﻿@model LibraryViewModel
+<body id="nav-home">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+            <div class="col-2 form-floating mb-3 ps-2">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Search</label>
+            </div>
+            <div class="col-4"></div>
+        <div class="col-2"><button type="button" class="btn btn-primary mt-1" style="background-color:#3680B2" data-bs-toggle="modal" data-bs-target="#exampleModal1" id="add">Add Book</button></div>
+        <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+        <div class="col-7">
+                <table class="table mt-3" id="example">
+            <thead class="dtable-head">
+                <tr>
+
+                    <th scope="col">Book Id</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Borrower Name</th>
+                    <th scope="col">Date Of Issue</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.Table)
+                {
+                    <tr>
+                        <td>@item.id</td>
+                        <td>@item.name</td>
+                        <td>@item.author</td>
+                        <td>@item.borrower</td>
+                        <td>@item.dateofissue</td>
+                        <td>@item.city</td>
+                        <td>@item.genre</td>
+                        <td>
+
+                                    <button type="button" class="btn btn-outline-info me-1 mt-1 edit-role" style="background-color:#3680B2;color:white;border:none" data-bs-toggle="modal" data-bs-target="#exampleModal2">Edit</button>
+                                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog  modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background-color:#3680B2;color:white">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Book Form</h1>
+                                                </div>
+                                                <div class="modal-body" style="border:none">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-6 form-floating mb-3 ps-2">
+                                                                <input type="text" class="form-control" id="libname" placeholder="name@example.com" value="@item.name">
+                                                                <label for="floatingInput">Book Name</label>
+                                                            </div><div class="col-6 form-floating mb-3 ps-2">
+                                                                <input type="text" class="form-control" id="libauth" placeholder="name@example.com" value="@item.author">
+                                                                <label for="floatingInput">Author</label>
+                                                            </div>
+                                                        </div><div class="row">
+                                                            <div class="col-6 form-floating mb-3 ps-2">
+                                                                <input type="text" class="form-control" id="libborrow" placeholder="name@example.com" value="@item.borrower">
+                                                                <label for="floatingInput">Borrower Name</label>
+                                                            </div><div class="col-6 form-floating mb-3 ps-2">
+                                                                <input type="date" class="form-control" id="libissue" placeholder="name@example.com" value="@item.dateofissue">
+                                                                <label for="floatingInput">Date Of Issue</label>
+                                                            </div>
+                                                        </div><div class="row">
+                                                            <div class="col-6 form-floating">
+                                                                <select class="form-select" id="libgenre" aria-label="Floating label select example">
+                                                                    <option value="@item.genre" selected>@item.genre</option>
+                                                                    <option value="Romance">Romance</option>
+                                                                    <option value="Mystery">Mystery</option>
+                                                                    <option value="Thriller">Thriller</option>
+                                                                    <option value="Fantasy">Fantasy</option>
+                                                                    <option value="Science Fiction">Science Fiction</option>
+                                                                    <option value="Historic Fiction">Historic Fiction</option>
+                                                                </select>
+                                                                <label for="floatingSelect">Genre</label>
+                                                            </div><div class="col-6 form-floating mb-3 ps-2">
+                                                                <input type="text" class="form-control" id="libcity" placeholder="name@example.com" value="@item.city">
+                                                                <label for="floatingInput">City</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6 mb-3 ps-2">
+                                                                <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" style="width:210px;color:black;border:1px solid black">Cancel</button>
+                                                            </div> <div class="col-6 mb-3 ps-2">
+                                                                <button type="button" class="btn btn-outline-info" id="addbutton" data-bs-dismiss="modal" style="width:210px;background-color:#5E36B2;color:white;border:none">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   <button type="button" class="btn btn-outline-info me-1 mt-1 del-role" style="background-color:black;color:white;border:none" value="@item.id" id="delbutton">Delete</button>
+
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3680B2;color:white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Book Form</h1>
+                           </div>
+            <div class="modal-body" style="border:none">
+               <div class="container">
+                   <div class="row">
+                <div class="col-6 form-floating mb-3 ps-2">
+                    <input type="text" class="form-control" id="libname" placeholder="name@example.com">
+                    <label for="floatingInput">Book Name</label>
+               </div><div class="col-6 form-floating mb-3 ps-2">
+                    <input type="text" class="form-control" id="libauth" placeholder="name@example.com">
+                    <label for="floatingInput">Author</label>
+               </div> </div><div class="row">
+                <div class="col-6 form-floating mb-3 ps-2">
+                    <input type="text" class="form-control" id="libborrow" placeholder="name@example.com">
+                    <label for="floatingInput">Borrower Name</label>
+               </div><div class="col-6 form-floating mb-3 ps-2">
+                    <input type="date" class="form-control" id="libissue" placeholder="name@example.com">
+                    <label for="floatingInput">Date Of Issue</label>
+                </div>
+                </div><div class="row">
+                        <div class="col-6 form-floating">
+                            <select class="form-select" id="libgenre" aria-label="Floating label select example">
+                                <option value="Romance">Romance</option>
+                                <option value="Mystery">Mystery</option>
+                                <option value="Thriller">Thriller</option>
+                                <option value="Fantasy">Fantasy</option>
+                                <option value="Science Fiction">Science Fiction</option>
+                                <option value="Historic Fiction">Historic Fiction</option>
+                            </select>
+                            <label for="floatingSelect">Genre</label>
+                        </div><div class="col-6 form-floating mb-3 ps-2">
+                    <input type="text" class="form-control" id="libcity" placeholder="name@example.com">
+                    <label for="floatingInput">City</label>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-3 ps-2">
+                <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" style="width:210px;color:black;border:1px solid black">Cancel</button>
+                    </div> <div class="col-6 mb-3 ps-2">
+                        <button type="button" class="btn btn-outline-info" id="addbutton" data-bs-dismiss="modal" style="width:210px;background-color:#5E36B2;color:white;border:none">Save</button>
+                    </div>
+                </div>
+</div>            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $('#addbutton').on('click', function (e) {
+        var addon = $('#libname').val();
+        var addon1 = $('#libauth').val();
+        var addon2 = $('#libborrow').val();
+        var addon3 = $('#libissue').val();
+        var addon4 = $('#libgenre').val();
+        var addon5 = $('#libcity').val();
+        $.ajax({
+            url: '/Home/Index',
+            type: 'POST',
+            data: { name:addon,author:addon1,borrower:addon2,dateofissue:addon3,genre:addon4,city:addon5 },
+            success: function (response) {
+                $('#nav-home').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $('#delbutton').on('click', function (e) {
+        var addon = $(this).attr('value');
+        $.ajax({
+            url: '/Home/Delete',
+            type: 'POST',
+            data: { id:addon},
+            success: function (response) {
+                $('#nav-home').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
